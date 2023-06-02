@@ -1,0 +1,254 @@
+/* Importing Fonts from Google Fonts  */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    /* font-family: 'Roboto', sans-serif; */
+    font-family: 'Open Sans', sans-serif;
+}
+body {
+    background-size: cover;
+}
+
+
+/* Animations */
+@keyframes clicked {
+    from {
+        font-size: 16px;
+        padding: 7px 11px;
+    }
+    to {
+        font-size: 18px;
+    }
+}
+@keyframes moveBackground {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 3350% 3350%;
+    }
+  }
+
+
+
+
+
+/* Stlyling Search Box and it's Button */
+.searchBox {
+    display: flex;
+    align-items: center;
+}
+#searchCity {
+    font-size: 18px;
+    padding: 3px;
+    color: black;
+}
+#search {
+    padding: 6px 8px;
+    margin: 0 1px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: black;
+    color: whitesmoke;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#search:hover {
+    background-color: rgb(26, 25, 25);
+}
+#search:active {
+    animation: clicked 0.8s linear 1;
+}
+
+
+
+/* Styling Current Weather & Temperature i.e., Header  */
+.header {
+    margin: 30px 0;
+}
+
+.currentTemperature {
+    text-align: center;
+    width: 100%;
+}
+#currentTemp {
+    font-size: 60px;
+    height: 66px;
+    margin-top: -22px;
+}
+#city {
+    font-size: 30px;
+    font-weight: bolder;
+}
+#currentWeather, #currentTempRange {
+    font-size: 18px;
+}
+
+
+
+
+
+
+
+/* Styling Current Weather Extra Info */
+.images {
+    opacity: 0.5;
+    height: 23px;
+    margin-right: 5px;
+}
+.container {
+    font-size: 12px;
+    width: 116px;
+    padding: 15px 7px;
+    border-radius: 10px;
+    margin: 15px;
+}
+#feelsLike, #visiblity, #humidity, #visiblity, #rainfall, #wind {
+    font-size: 30px;
+    font-weight: bold;
+}
+#humidity, #rainfall, #wind, #visiblity, #feelsLike {
+    padding: 13px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+}
+#visiblity, #feelsLike {
+    padding: 16px 0;
+}
+#humidity {
+    font-size: 35px;
+}
+#rainfall, #wind {
+    padding: 19px 0;
+    font-size: 24px;
+}
+
+
+
+/* For Global Styling */
+.center {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.centers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.glass {
+    background: linear-gradient(
+      135deg,
+      rgba(54, 81, 157, 0.393),
+      rgba(47, 46, 99, 0.393)
+    );
+    backdrop-filter: blur(21px);
+    -webkit-backdrop-filter: blur(21px); /* If above line doesn't work */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+    /* border: 1px solid rgba(255, 255, 255, 0.16); */
+    border-radius: 24px;
+}
+
+
+.weatherBackground {
+    padding: 10px;
+    /* For Cloudy Weather */
+    padding-bottom: 20px;
+    
+}
+
+
+
+/* Set Background according to the Weather */
+.cloudy {
+    background: url('Images/cloudy.svg');
+    animation: moveBackground 30s linear infinite;
+    background-size:cover;
+}
+.lightCloud {
+    background: url('Images/sunny.svg');
+    animation: moveBackground 60s linear infinite;
+    background-size:cover;
+}
+
+@media only screen and (max-width: 768px) {
+    .cloudy {
+        background: url('Images/cloudy.svg');
+        animation: moveBackground 300s linear infinite;
+        background-size:cover;
+    }
+    .lightCloud {
+        background: url('Images/sunny.svg');
+        animation: moveBackground 600s linear infinite;
+        background-size:cover;
+    }
+  }
+@media only screen and (min-width: 768px) and (max-width: 1089px) {
+    .cloudy {
+        background: url('Images/cloudy.svg');
+        animation: moveBackground 150s linear infinite;
+        background-size:cover;
+    }
+    .lightCloud {
+        background: url('Images/sunny.svg');
+        animation: moveBackground 300s linear infinite;
+        background-size:cover;
+    }
+  }
+@media only screen and (min-width: 1089px) and (max-width: 1222px) {
+    .cloudy {
+        background: url('Images/cloudy.svg');
+        animation: moveBackground 100s linear infinite;
+        background-size:cover;
+    }
+    .lightCloud {
+        background: url('Images/sunny.svg');
+        animation: moveBackground 230s linear infinite;
+        background-size:cover;
+    }
+  }
+  
+
+.cloudyColor {
+    background-color: rgb(80, 149, 206);
+}
+.cloudyTextColor {
+    color: rgb(22, 22, 22);
+}
+
+.raining {
+    background: url('Images/raining.gif');
+    background-size:cover;
+}
+.thunder {
+    background: url('Images/thunder.gif');
+    background-size:cover;
+}
+.rainingTextColor {
+    color: rgb(230, 230, 230);
+}
+
+
+
+/* Forcast Style  */
+.forecastSize {
+    width: 320px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 15px 10px;
+}
+#forecastLogo {
+    width: 50px;
+}
+.forecastContent {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-evenly;
+}

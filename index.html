@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather - Get Current Weather of your City</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="Images/logo.jpeg" type="image/icon type">
+</head>
+
+<body class="" id="globalBody">
+    <!-- Displays the current weather and it's other info -->
+    <div class="weatherBackground" id="globalContent">
+        <!-- Search Input Tag & Button  -->
+        <div class="searchBox">
+            <input type="text" placeholder="Search Weather" id="searchCity">
+            <div id="search" onclick="searchClicked()">Search</div>
+        </div>
+
+        <!-- Displays Current Weather & Temperature  -->
+        <div class="header">
+            <div class="currentTemperature"></div>
+        </div>
+        <div class="extraContent centers"></div>
+    </div>
+
+    <!-- Displays the forcast weather  -->
+    <div class="weatherForeground" id="forecastArea">
+        <div class="forecastContent centers"></div>
+    </div>
+
+    <!-- Links JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
