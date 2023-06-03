@@ -5,7 +5,8 @@ let noOfDays = 15;
 let searchCity = document.getElementById("searchCity");
 let body = document.getElementById("globalBody");
 let weatherBackground = document.getElementById("globalContent");
-
+let showDate = document.getElementById("showDate");
+let showTime = document.getElementById("showTime");
 
 
 
@@ -48,6 +49,26 @@ let getTodayDate = (noOfDays = 0) => {
   // Display the date
   return generateDate(`${year}-${month}-${day}`);
 };
+let getTodayTime = () => {
+  let currentTime = new Date();
+  let hours = currentTime.getHours();
+  let minutes = currentTime.getMinutes();
+  let seconds = currentTime.getSeconds();
+
+  // Formatting the time to display leading zeros
+  if (hours < 10) {
+    hours = "0" + hours;
+  }
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+  if (seconds < 10) {
+    seconds = "0" + seconds;
+  }
+  let currentTimeString = hours + ":" + minutes + ":" + seconds;
+
+  return currentTimeString;
+}
 let capitalize = (text) => {
   text = text.trim();
   textArr = text.split(" ");
@@ -61,12 +82,14 @@ let capitalize = (text) => {
 
 
 
+
+
+
 // Fetch weather info from Weather API
 let getWeather = async (city="Delhi") => {
   let url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
   const response = await fetch(url);
   const data = await response.json();
-  console.log(data)
 
   let currentDate = new Date().toISOString().split("T")[0];
   let cityWeather = {
@@ -117,25 +140,43 @@ let getWeather = async (city="Delhi") => {
     }
   }
 
-  console.log(cityWeather);
+  showDate.innerHTML = getTodayDate();
+
   return cityWeather;
 };
+
+// Upadte time Each Second
+setInterval(() => {
+  showTime.innerHTML = getTodayTime();
+}, 1000);
 
 // Dynamically changes the website template, such as - background, color etc, according to the weather
 let changeBackground = (weather) => {
   if(weather.includes("cloud")) {
+    body.classList.remove('raining', 'rainingTextColor', 'thunder')
     body.classList.add('cloudyColor', 'cloudyTextColor');
+    weatherBackground.classList.remove('lightCloud');
     weatherBackground.classList.add('cloudy');
+    console.log("it's cloudy:", weather)
   }
   else if(weather.includes("rain")) {
+    body.classList.remove('thunder', 'cloudyTextColor', 'cloudyColor')
     body.classList.add('raining', 'rainingTextColor');
+    weatherBackground.classList.remove('cloudy', 'lightCloud');
+    console.log("it's raining:", weather)
   }
   else if(weather.includes("strom") || weather.includes("thunder")) {
+    body.classList.remove('raining', 'cloudyTextColor', 'cloudyColor')
     body.classList.add('thunder', 'rainingTextColor');
+    weatherBackground.classList.remove('cloudy', 'lightCloud');
+    console.log("it's stromy:", weather)
   }
   else {
+    body.classList.remove('raining', 'rainingTextColor', 'thunder')
     body.classList.add('cloudyColor', 'cloudyTextColor');
+    weatherBackground.classList.remove('cloudy');
     weatherBackground.classList.add('lightCloud');
+    console.log("it's clear:", weather)
   }
 };
 
@@ -402,20 +443,19 @@ let changeForecastDay = (first, second, third, fourth) => {
 // onClick function, generate Current Weather along with it's forcast [Basically it calls all the required functions]
 let searchClicked = async () => {
   let data = await getWeather(searchCity.value);
-  console.log(data);
+  searchCity.value = ''
 
   changeCurrentDay(data.name, data.forecast[getTodayDate()][0].temperature, data.forecast[getTodayDate()][0].weather, data.forecast[getTodayDate()][0].tempRange);
 
   changeForecastDay(data.forecast[getTodayDate(1)][0], data.forecast[getTodayDate(2)][0], data.forecast[getTodayDate(3)][0], data.forecast[getTodayDate(4)][0]);
 
   currentWeatherTemplate(data.feelsLike, data.humidity, data.visiblity, data.seaLevel, data.wind);
-  changeBackground(data.forecast[getTodayDate()][0].weather)
+  changeBackground(data.forecast[getTodayDate()][0].weather.toLowerCase())
 }
 
 // It runs by default for city=Delhi
 let byDefault = async () => {
   let data = await getWeather();
-  console.log(data);
 
   changeCurrentDay(data.name, data.forecast[getTodayDate()][0].temperature, data.forecast[getTodayDate()][0].weather, data.forecast[getTodayDate()][0].tempRange);
 
