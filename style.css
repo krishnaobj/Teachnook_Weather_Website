@@ -39,6 +39,7 @@ body {
 .searchBox {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 }
 #searchCity {
     font-size: 18px;
@@ -61,7 +62,11 @@ body {
 #search:active {
     animation: clicked 0.8s linear 1;
 }
-
+#showDate, #showTime {
+    font-size: 18px;
+    font-weight: bolder;
+    margin-left: 20px;
+}
 
 
 /* Styling Current Weather & Temperature i.e., Header  */
@@ -179,7 +184,7 @@ body {
 @media only screen and (max-width: 768px) {
     .cloudy {
         background: url('Images/cloudy.svg');
-        animation: moveBackground 300s linear infinite;
+        animation: moveBackground 500s linear infinite;
         background-size:cover;
     }
     .lightCloud {
@@ -191,7 +196,7 @@ body {
 @media only screen and (min-width: 768px) and (max-width: 1089px) {
     .cloudy {
         background: url('Images/cloudy.svg');
-        animation: moveBackground 150s linear infinite;
+        animation: moveBackground 250s linear infinite;
         background-size:cover;
     }
     .lightCloud {
@@ -222,7 +227,7 @@ body {
 }
 
 .raining {
-    background: url('Images/thunder.gif');
+    background: url('Images/raining.gif');
     background-size:cover;
 }
 .thunder {
